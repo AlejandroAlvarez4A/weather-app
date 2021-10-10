@@ -8,32 +8,16 @@ const questions = [
         message: 'What do you want to do?',
         choices: [
             {
-                value: '1',
-                name: `${ '1.'.green } Create task`
+                value: 1,
+                name: `${ '1.'.green } Search city`
             },
             {
-                value: '2',
-                name: `${ '2.'.green } List task`
+                value: 2,
+                name: `${ '2.'.green } History`
             },
             {
-                value: '3',
-                name: `${ '3.'.green } List completed task`
-            },
-            {
-                value: '4',
-                name: `${ '4.'.green } List pending task `
-            },
-            {
-                value: '5',
-                name: `${ '5.'.green } Complete tasks`
-            },
-            {
-                value: '6',
-                name: `${ '6.'.green } Delete tasks`
-            },
-            {
-                value: '0',
-                name: `${ '0.'.green } Exit`
+                value: 0,
+                name: `${ '3.'.green } Exit`
             }
         ]
     }
@@ -81,12 +65,12 @@ const readInput = async ( message ) => {
     return description;
 }
 
-const listTaskDeleted = async ( tasks = [] ) => {
-    const choices = tasks.map( ( task, index) => {
+const placesSelected = async ( places = [] ) => {
+    const choices = places.map( ( places, index) => {
         const idx = `${ index + 1}.`.green;
         return {
-            value: task.id,
-            name: `${ idx } ${ task.desc}`
+            value: places.id,
+            name: `${ idx } ${ places.name}`
         };
     });
 
@@ -98,7 +82,7 @@ const listTaskDeleted = async ( tasks = [] ) => {
         {
             type: 'list',
             name: 'id',
-            message: 'Delete',
+            message: 'Selected place',
             choices
         }
     ]
@@ -143,7 +127,7 @@ module.exports = {
     inquirerMenu,
     pause,
     readInput,
-    listTaskDeleted,
+    placesSelected,
     confirm,
     showCheckList
 }
